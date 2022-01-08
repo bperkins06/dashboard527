@@ -22,7 +22,6 @@ class Board extends React.Component {
     );
   }
 
-  /*
   render() {
     let row_key, cells, rows=[];
     const ROWS = 3;
@@ -42,52 +41,6 @@ class Board extends React.Component {
 
     return (<div>{rows}</div>);
   }
-  */
-
-  render() {
-    let container, cells, rows=[], row_key;
-    const ROWS = 3;
-    const COLS = 3;
-
-    // ---------------------------------------------------------------
-    // Dynamic way that uses React.createElement
-    // ---------------------------------------------------------------
-    for (let i=0;i<ROWS;i++){
-      cells = [];
-      row_key = 'row_'+i;
-      for (let j=0;j<COLS;j++){
-        cells.push(this.renderSquare((i*COLS)+j));
-      }
-      rows.push(React.createElement("div", { key:row_key, className: "board-row" }, cells));
-    }
-
-    container = React.createElement("div", null, rows);
-    return container;
-  }
-
-  // ----------------------------------------------------
-  // Hardcoded way 
-  // ----------------------------------------------------
-  /*
-  return (
-    <div>
-      <div className="board-row">
-        {this.renderSquare(0)}
-        {this.renderSquare(1)}
-        {this.renderSquare(2)}
-      </div>
-      <div className="board-row">
-        {this.renderSquare(3)}
-        {this.renderSquare(4)}
-        {this.renderSquare(5)}
-      </div>
-      <div className="board-row">
-        {this.renderSquare(6)}
-        {this.renderSquare(7)}
-        {this.renderSquare(8)}
-      </div>
-    </div>
-  );*/
 }
 
 class Game extends React.Component {
