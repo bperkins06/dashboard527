@@ -115,6 +115,7 @@ class Game extends React.Component {
     let history = JSON.parse(JSON.stringify(this.state.history));
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+    const draw = current.squares.indexOf(null) == -1; 
     const order = this.state.orderAscending ? history : history.reverse();
     const sortButton = this.state.orderAscending ? "Sort Descending":"Sort Ascending"
     const moves = order.map((step, move) => {
@@ -138,10 +139,14 @@ class Game extends React.Component {
     });
     const orderedList = this.renderList(moves);
     let status;
-    if (winner) {
-      status = 'Winner: ' + winner.player;
+    if (draw) {
+      status = 'Draw: You are both LOOOSERS! &#128527;';
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      if (winner) {
+        status = 'Winning: ' + winner.player + ' &#127881;';
+      } else {
+        status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      }
     }    
     return (
       <div className="game">
@@ -153,7 +158,7 @@ class Game extends React.Component {
           />
         </div>
         <div className="game-info">
-          <div>{status}</div>
+          <div dangerouslySetInnerHTML={{ __html: status}}></div>
           <div><button onClick={() => this.sortMoves()}>{sortButton}</button></div> 
           {orderedList}
         </div>
