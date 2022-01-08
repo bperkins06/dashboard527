@@ -29,6 +29,10 @@ ul li button:hover {
   margin-bottom: 10px;
 }
 
+.winner {
+  background-color: yellow !important;
+}
+
 .square {
   background: #fff;
   border: 1px solid #999;
