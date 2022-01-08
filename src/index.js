@@ -92,19 +92,28 @@ class Game extends React.Component {
   }
 
   render() {
-    const history = this.state.history;
+    let history = JSON.parse(JSON.stringify(this.state.history));
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
     const order = this.state.orderAscending ? history : history.reverse();
+    const numberOrder = "reversed";
     const sortButton = this.state.orderAscending ? "Sort Descending":"Sort Ascending"
     const moves = order.map((step, move) => {
-      const location = move ? ' Location: ('+order[move].location+')':'';
-      const desc = move ?
+      const linkMove = this.state.orderAscending ? move : (order.length-move-1) 
+      let location = move ? ' Location: ('+order[move].location+')':'';
+      let desc = move ?
         'Go to move #' + move:
         'Go to game start';
+      if (!this.state.orderAscending) {
+        location = (move == (order.length-1)) ? '':' Location: ('+order[move].location+')';
+        desc = (move == (order.length-1)) ?
+            'Go to game start':
+            'Go to move #' + (order.length - move -1);
+      }  
+
       return (
-        <li key={move}> 
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>{location}
+        <li key={linkMove}> 
+          <button onClick={() => this.jumpTo(linkMove)}>{desc}</button>{location}
         </li>
       );
     });
