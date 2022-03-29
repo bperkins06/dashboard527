@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Button from '@material-ui/core/Button';
 import './index.css';
 
 function Square(props) {
@@ -161,6 +162,9 @@ class Game extends React.Component {
           <div dangerouslySetInnerHTML={{ __html: status}}></div>
           <div><button onClick={() => this.sortMoves()}>{sortButton}</button></div> 
           {orderedList}
+        </div>
+        <div>
+          <Button variant="contained" color="primary" onClick={() => { alert('ouch!')}}>Hello World</Button>
         </div>
       </div>
     );

@@ -1,5 +1,5 @@
-# tic-tac-toe
-REACT-REDUX tic-tac-toe game [tutorial](https://reactjs.org/tutorial/tutorial.html)
+# Dashboard
+Dashboard prototype using material ui and chart.js 
 
 # Getting Started with Create React App
 
